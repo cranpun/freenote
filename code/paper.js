@@ -60,7 +60,7 @@ function drawProc(x, y, tool, clr) {
         paperCtx.strokeStyle = clr;
         paperCtx.stroke();
     } else if(tool == "del") {
-        paperCtx.clearRect(x - 10, y - 10, 20, 20);
+        paperCtx.clearRect(x - 20, y - 20, 40, 40);
     }
 
     // 現在の位置を保存
