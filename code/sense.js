@@ -37,7 +37,7 @@ function getXY(dev, e) {
     if (dev == "touch") {
         var oe = e.originalEvent.changedTouches[0];
         var tg = e.target.getBoundingClientRect();
-        return { x: oe.pageX - tg.left, y: oe.pageY - tg.top }
+        return { x: oe.clientX - tg.left, y: oe.clientY - tg.top }
     } else {
         var oe = e.originalEvent;
         return { x: oe.offsetX, y: oe.offsetY };
