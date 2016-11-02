@@ -10,7 +10,6 @@ body
     border: 15px solid #d66a35;
     position: relative;
     display: none;
-    margin-top: 34px;
 }
 #sense_area
 {
@@ -64,10 +63,4 @@ table#results th
 .colorpicker-alpha
 {
     display: none;
-}
-#ctrl
-{
-    position: fixed;
-    width: 300px;
-    z-index: 100;
 }
