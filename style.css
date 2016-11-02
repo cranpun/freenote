@@ -1,0 +1,41 @@
+#sense_area_wrap
+{
+    width: 100%;
+    height: 600px;
+}    
+.dot
+{
+    position: absolute;
+    font-size: 3px;
+}
+div#results_wrap
+{
+    height: 200px;
+    overflow-y: scroll; 
+    overflow-x: none;
+    -webkit-overflow-scrolling: touch;
+}
+table#results
+{
+    /*table-layout: fixed;*/
+    width: 100%;
+    height: 100%;
+}
+.nowrap
+{
+    white-space: nowrap;
+}
+table#results td,
+table#results th
+{
+    width: 50%;
+}
+
+tbody#logs 
+{
+}
+
+.hdn
+{
+    display: none;
+}
