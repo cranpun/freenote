@@ -180,7 +180,7 @@
 	    // 高さの調節
 	    var wh = $(window).height();
 	    // // 上部の15px、下部の15px、コントローラの34px、さらにborderの上15px、下15pxを除く
-	    var wph = wh - 15 - 15 - 34 - 15 - 15;
+	    var wph = wh - 15 - 15 - 15 - 15;
 	    wrap.height(wph);
 	
 	    var canv = $("#sense_area");
