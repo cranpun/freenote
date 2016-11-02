@@ -24,7 +24,7 @@ function initOnReady() {
     canv.attr("height", wrap.height());
 
     // バタバタするのを避けるために非表示にしてたのを復帰
-    $("body").css("display", "block");
+    wrap.css("display", "block");
 
     // jQueryオブジェクトではなくDOMを取得。
     var c = canv[0];

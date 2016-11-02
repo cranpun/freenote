@@ -1,7 +1,6 @@
 body
 {
     padding-top: 15px;
-    display: none;
 }
 #sense_area_wrap
 {
@@ -10,6 +9,7 @@ body
     background: rgb(0, 50, 0);
     border: 15px solid #d66a35;
     position: relative;
+    display: none;
 }
 #sense_area
 {
