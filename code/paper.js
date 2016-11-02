@@ -24,30 +24,7 @@ function initOnReady() {
     // 初期化
     clear();
 
-    test_logdraw();
-}
-
-function test_logdraw() {
-    // サイズ調整
-    var wrap = $("#sense_area_wrap");
-    var canv = $("#sense_area_log");
-    canv.attr("width", wrap.width() - 30);
-    canv.attr("height", wrap.height() - 30);
-
-    // 退避
-    var tmp = paperCtx;
-
-    // 上書き用のキャンバス
-    paperCtx = canv[0].getContext("2d");
-
-    draw(10, 10);
-    draw(20, 10);
-    draw(20, 20);
-    draw(10, 20);
-    draw(10, 10);
-    drawProc(20, 20, "del", "");
-
-    paperCtx = tmp;
+    // test_logdraw();
 }
 
 function draw(x, y) {
@@ -93,4 +70,28 @@ function getTool() {
 
 function getColor() {
     return new RGBColor($("#penclr").css("background-color")).toHex();
+}
+
+
+function test_logdraw() {
+    // サイズ調整
+    var wrap = $("#sense_area_wrap");
+    var canv = $("#sense_area_log");
+    canv.attr("width", wrap.width() - 30);
+    canv.attr("height", wrap.height() - 30);
+
+    // 退避
+    var tmp = paperCtx;
+
+    // 上書き用のキャンバス
+    paperCtx = canv[0].getContext("2d");
+
+    draw(10, 10);
+    draw(20, 10);
+    draw(20, 20);
+    draw(10, 20);
+    draw(10, 10);
+    drawProc(20, 20, "del", "");
+
+    paperCtx = tmp;
 }

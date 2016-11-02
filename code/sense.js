@@ -26,6 +26,11 @@ function initOnReady() {
     setHandlerMouse(area, "mousedown");
     setHandlerMouse(area, "mousemove");
     setHandlerMouse(area, "mouseleave");
+
+    setHandlerTouch(area, "touchstart");
+    setHandlerTouch(area, "touchleave");
+    setHandlerTouch(area, "touchmove");
+    setHandlerTouch(area, "touchtouchend");
 }
 
 function getXY(dev, e) {
