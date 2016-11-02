@@ -7,13 +7,20 @@ module.exports = {
 var paperCtx;
 var preX;
 var preY;
+var RGBColor = require("rgbcolor");
+var delclr = "#003200"; 
 
 function initOnReady() {
     // サイズ調整
-    var wrap = $("#wrap_sense_area");
+    var wrap = $("#sense_area_wrap");
     var canv = $("#sense_area");
     canv.attr("width", wrap.width());
     canv.attr("height", wrap.height());
+
+    // 消しゴム色＝背景色を取得
+    rgbc = new RGBColor(wrap.css("background-color"));
+    delclr = rgbc.toHex(); 
+
     // jQueryオブジェクトではなくDOMを取得。
     var c = canv[0];
     // DOMのgetContextを取得
@@ -23,7 +30,8 @@ function initOnReady() {
     clear();
 }
 
-function draw(x, y, tool) {
+function draw(x, y, tool, clr) {
+    console.log("draw");
     paperCtx.beginPath();
     if (preX == null) {
         // 最初のポイント
@@ -37,13 +45,13 @@ function draw(x, y, tool) {
         paperCtx.lineTo(x, y);
         paperCtx.lineCap = "round";
         paperCtx.lineWidth = 2;
-        paperCtx.strokeStyle = "#000000";
+        paperCtx.strokeStyle = clr;
         paperCtx.stroke();
     } else if(tool == "del") {
         paperCtx.lineTo(x, y);
         paperCtx.lineCap = "round";
         paperCtx.lineWidth = 20;
-        paperCtx.strokeStyle = "#dff0d8";
+        paperCtx.strokeStyle = delclr;
         paperCtx.stroke();
     }
 
@@ -53,6 +61,7 @@ function draw(x, y, tool) {
 }
 
 function clear() {
+    console.log("clear");
     preX = null;
     preY = null;
 }
