@@ -166,18 +166,13 @@
 	var preX;
 	var preY;
 	var RGBColor = __webpack_require__(3);
-	var delclr = "#003200"; 
 	
 	function initOnReady() {
 	    // サイズ調整
 	    var wrap = $("#sense_area_wrap");
 	    var canv = $("#sense_area");
-	    canv.attr("width", wrap.width());
-	    canv.attr("height", wrap.height());
-	
-	    // 消しゴム色＝背景色を取得
-	    rgbc = new RGBColor(wrap.css("background-color"));
-	    delclr = rgbc.toHex(); 
+	    canv.attr("width", wrap.width() - 30);
+	    canv.attr("height", wrap.height() - 30);
 	
 	    // jQueryオブジェクトではなくDOMを取得。
 	    var c = canv[0];
@@ -186,11 +181,40 @@
 	
 	    // 初期化
 	    clear();
+	
+	    test_logdraw();
+	}
+	
+	function test_logdraw() {
+	    // サイズ調整
+	    var wrap = $("#sense_area_wrap");
+	    var canv = $("#sense_area_log");
+	    canv.attr("width", wrap.width() - 30);
+	    canv.attr("height", wrap.height() - 30);
+	
+	    // 退避
+	    var tmp = paperCtx;
+	
+	    // 上書き用のキャンバス
+	    paperCtx = canv[0].getContext("2d");
+	
+	    draw(10, 10);
+	    draw(20, 10);
+	    draw(20, 20);
+	    draw(10, 20);
+	    draw(10, 10);
+	    drawProc(20, 20, "del", "");
+	
+	    paperCtx = tmp;
 	}
 	
 	function draw(x, y) {
 	    var clr = getColor();
 	    var tool = getTool();
+	    drawProc(x, y, tool, clr);
+	}
+	
+	function drawProc(x, y, tool, clr) {
 	    paperCtx.beginPath();
 	    if (preX == null) {
 	        // 最初のポイント
@@ -207,11 +231,7 @@
 	        paperCtx.strokeStyle = clr;
 	        paperCtx.stroke();
 	    } else if(tool == "del") {
-	        paperCtx.lineTo(x, y);
-	        paperCtx.lineCap = "round";
-	        paperCtx.lineWidth = 20;
-	        paperCtx.strokeStyle = delclr;
-	        paperCtx.stroke();
+	        paperCtx.clearRect(x - 5, y - 5, 10, 10);
 	    }
 	
 	    // 現在の位置を保存
