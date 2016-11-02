@@ -1,18 +1,18 @@
 body
 {
     padding-top: 15px;
+    display: none;
 }
 #sense_area_wrap
 {
     width: 100%;
-    height: 400px;
+    height: 0;
     background: rgb(0, 50, 0);
     border: 15px solid #d66a35;
     position: relative;
 }
 #sense_area
 {
-    border: 1px solid white;
     position: absolute;
     top: 0px;
     left: 0px;

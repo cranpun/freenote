@@ -14,7 +14,7 @@ function initOnReady() {
     var wrap = $("#sense_area_wrap");
 
     // 高さの調節
-    var wh = window.parent.screen.height;
+    var wh = $(window).height();
     // // 上部の15px、下部の15px、コントローラの34px、さらにborderの上15px、下15pxを除く
     var wph = wh - 15 - 15 - 34 - 15 - 15;
     wrap.height(wph);
@@ -22,6 +22,9 @@ function initOnReady() {
     var canv = $("#sense_area");
     canv.attr("width", wrap.width());
     canv.attr("height", wrap.height());
+
+    // バタバタするのを避けるために非表示にしてたのを復帰
+    $("body").css("display", "block");
 
     // jQueryオブジェクトではなくDOMを取得。
     var c = canv[0];
