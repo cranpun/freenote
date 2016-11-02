@@ -30,13 +30,14 @@ function initOnReady() {
     setHandlerTouch(area, "touchstart");
     setHandlerTouch(area, "touchleave");
     setHandlerTouch(area, "touchmove");
-    setHandlerTouch(area, "touchtouchend");
+    setHandlerTouch(area, "touchend");
 }
 
 function getXY(dev, e) {
     if (dev == "touch") {
-        var oe = e.changedTouches[0];
-        return { x: oe.pageX, y: oe.pageY }
+        var oe = e.originalEvent.changedTouches[0];
+        var tg = e.target.getBoundingClientRect();
+        return { x: oe.pageX - tg.left, y: oe.pageY - tg.top }
     } else {
         var oe = e.originalEvent;
         return { x: oe.offsetX, y: oe.offsetY };
@@ -78,7 +79,7 @@ function setHandlerTouch(area, elabel) {
         e.preventDefault();
         nowdevice = "touch";
         xy = getXY(nowdevice, e);
-
+        console.log(xy.x + "," + xy.y);
         if (elabel == "touchend") {
             nowpos = "up";
         } else if (elabel == "touchstart") {

@@ -13,8 +13,8 @@ function initOnReady() {
     // サイズ調整
     var wrap = $("#sense_area_wrap");
     var canv = $("#sense_area");
-    canv.attr("width", wrap.width() - 30);
-    canv.attr("height", wrap.height() - 30);
+    canv.attr("width", wrap.width());
+    canv.attr("height", wrap.height());
 
     // jQueryオブジェクトではなくDOMを取得。
     var c = canv[0];
@@ -50,7 +50,7 @@ function drawProc(x, y, tool, clr) {
         paperCtx.strokeStyle = clr;
         paperCtx.stroke();
     } else if(tool == "del") {
-        paperCtx.clearRect(x - 5, y - 5, 10, 10);
+        paperCtx.clearRect(x - 10, y - 10, 20, 20);
     }
 
     // 現在の位置を保存
@@ -86,12 +86,12 @@ function test_logdraw() {
     // 上書き用のキャンバス
     paperCtx = canv[0].getContext("2d");
 
-    draw(10, 10);
-    draw(20, 10);
-    draw(20, 20);
-    draw(10, 20);
-    draw(10, 10);
-    drawProc(20, 20, "del", "");
+    draw(100, 100);
+    draw(200, 100);
+    draw(200, 200);
+    draw(100, 200);
+    draw(100, 100);
+    drawProc(200, 200, "del", "");
 
     paperCtx = tmp;
 }
