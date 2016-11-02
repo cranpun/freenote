@@ -16,11 +16,11 @@ function initOnReady() {
     // 高さの調節
     var wh = $(window).height();
     // // 上部の15px、下部の15px、コントローラの34px、さらにborderの上15px、下15pxを除く
-    var wph = wh - 15 - 15 - 15 - 15;
+    var wph = wh - 15 - 15 - 15 - 15- 34;
     wrap.height(wph);
 
     var canv = $("#sense_area");
-    canv.attr("width", wrap.width());
+    canv.attr("width", wrap.width() - 30);
     canv.attr("height", wrap.height());
 
     // バタバタするのを避けるために非表示にしてたのを復帰

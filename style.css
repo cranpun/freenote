@@ -69,4 +69,5 @@ table#results th
 {
     position: fixed;
     width: 300px;
+    z-index: 100;
 }
