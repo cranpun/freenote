@@ -136,7 +136,7 @@
 	        e.preventDefault();
 	        nowdevice = "touch";
 	        xy = getXY(nowdevice, e);
-	        console.log(xy.x + "," + xy.y);
+	        
 	        if (elabel == "touchend") {
 	            nowpos = "up";
 	        } else if (elabel == "touchstart") {
@@ -176,6 +176,13 @@
 	function initOnReady() {
 	    // サイズ調整
 	    var wrap = $("#sense_area_wrap");
+	
+	    // 高さの調節
+	    var wh = window.parent.screen.height;
+	    // // 上部の15px、下部の15px、コントローラの34px、さらにborderの上15px、下15pxを除く
+	    var wph = wh - 15 - 15 - 34 - 15 - 15;
+	    wrap.height(wph);
+	
 	    var canv = $("#sense_area");
 	    canv.attr("width", wrap.width());
 	    canv.attr("height", wrap.height());

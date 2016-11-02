@@ -79,7 +79,7 @@ function setHandlerTouch(area, elabel) {
         e.preventDefault();
         nowdevice = "touch";
         xy = getXY(nowdevice, e);
-        console.log(xy.x + "," + xy.y);
+        
         if (elabel == "touchend") {
             nowpos = "up";
         } else if (elabel == "touchstart") {
