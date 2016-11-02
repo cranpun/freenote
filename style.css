@@ -33,11 +33,16 @@ table#results th
     width: 50%;
 }
 
-tbody#logs 
-{
-}
 
 .hdn
+{
+    display: none;
+}
+#penclr
+{
+    margin-right: 15px;
+}
+.colorpicker-alpha
 {
     display: none;
 }

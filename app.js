@@ -101,8 +101,6 @@
 	        if (nowdevice != "touch") {
 	            nowdevice = "mouse";
 	            xy = getXY(nowdevice, e);
-	            tool = getTool();
-	            clr = getColor();
 	
 	            // 位置の更新
 	            if (elabel == "mouseup") {
@@ -116,7 +114,7 @@
 	
 	            // 現在の位置に従って描画
 	            if (nowpos == "down") {
-	                paper.draw(xy.x, xy.y, tool, clr);
+	                paper.draw(xy.x, xy.y);
 	            } else {
 	                paper.clear();
 	            }
@@ -132,8 +130,6 @@
 	        e.preventDefault();
 	        nowdevice = "touch";
 	        xy = getXY(nowdevice, e);
-	        tool = getTool();
-	        clr = getColor();
 	
 	        if (elabel == "touchend") {
 	            nowpos = "up";
@@ -143,10 +139,10 @@
 	            // 領域の外に出たら終了
 	            nowpos = "up"
 	        }
-	        
+	
 	        // 現在の位置に従って描画
 	        if (nowpos == "down") {
-	            paper.draw(xy.x, xy.y, tool, clr);
+	            paper.draw(xy.x, xy.y);
 	        } else {
 	            paper.clear();
 	        }
@@ -154,14 +150,7 @@
 	    });
 	}
 	
-	
-	function getTool() {
-	    return $("[name='tool']:checked").val();
-	}
-	
-	function getColor() {
-	    return "#FFFFFF";
-	}
+
 
 /***/ },
 /* 2 */
@@ -199,8 +188,9 @@
 	    clear();
 	}
 	
-	function draw(x, y, tool, clr) {
-	    console.log("draw");
+	function draw(x, y) {
+	    var clr = getColor();
+	    var tool = getTool();
 	    paperCtx.beginPath();
 	    if (preX == null) {
 	        // 最初のポイント
@@ -230,10 +220,19 @@
 	}
 	
 	function clear() {
-	    console.log("clear");
 	    preX = null;
 	    preY = null;
 	}
+	
+	
+	function getTool() {
+	    return $("[name='tool']:checked").val();
+	}
+	
+	function getColor() {
+	    return new RGBColor($("#penclr").css("background-color")).toHex();
+	}
+
 
 /***/ },
 /* 3 */

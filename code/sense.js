@@ -44,8 +44,6 @@ function setHandlerMouse(area, elabel) {
         if (nowdevice != "touch") {
             nowdevice = "mouse";
             xy = getXY(nowdevice, e);
-            tool = getTool();
-            clr = getColor();
 
             // 位置の更新
             if (elabel == "mouseup") {
@@ -59,7 +57,7 @@ function setHandlerMouse(area, elabel) {
 
             // 現在の位置に従って描画
             if (nowpos == "down") {
-                paper.draw(xy.x, xy.y, tool, clr);
+                paper.draw(xy.x, xy.y);
             } else {
                 paper.clear();
             }
@@ -75,8 +73,6 @@ function setHandlerTouch(area, elabel) {
         e.preventDefault();
         nowdevice = "touch";
         xy = getXY(nowdevice, e);
-        tool = getTool();
-        clr = getColor();
 
         if (elabel == "touchend") {
             nowpos = "up";
@@ -86,10 +82,10 @@ function setHandlerTouch(area, elabel) {
             // 領域の外に出たら終了
             nowpos = "up"
         }
-        
+
         // 現在の位置に従って描画
         if (nowpos == "down") {
-            paper.draw(xy.x, xy.y, tool, clr);
+            paper.draw(xy.x, xy.y);
         } else {
             paper.clear();
         }
@@ -97,11 +93,3 @@ function setHandlerTouch(area, elabel) {
     });
 }
 
-
-function getTool() {
-    return $("[name='tool']:checked").val();
-}
-
-function getColor() {
-    return "#FFFFFF";
-}

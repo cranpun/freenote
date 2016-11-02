@@ -30,8 +30,9 @@ function initOnReady() {
     clear();
 }
 
-function draw(x, y, tool, clr) {
-    console.log("draw");
+function draw(x, y) {
+    var clr = getColor();
+    var tool = getTool();
     paperCtx.beginPath();
     if (preX == null) {
         // 最初のポイント
@@ -61,7 +62,15 @@ function draw(x, y, tool, clr) {
 }
 
 function clear() {
-    console.log("clear");
     preX = null;
     preY = null;
+}
+
+
+function getTool() {
+    return $("[name='tool']:checked").val();
+}
+
+function getColor() {
+    return new RGBColor($("#penclr").css("background-color")).toHex();
 }
