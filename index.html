@@ -7,7 +7,7 @@
 	<!--[if lt IE 9]>
     <script src="https://sub-cranpun.ssl-lolipop.jp/tm/wp-content/themes/themetm/js/html5.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="https://sub-cranpun.ssl-lolipop.jp/tm/wp-content/themes/themetm/favicon.ico" />
+	<link rel="shortcut icon" href="https://sub-cranpun.ssl-lolipop.jp/tm/wp-content/themes/themetm/favicon.ico" />
 	<title>Free Note</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		crossorigin="anonymous">
@@ -46,20 +46,25 @@
 				<div class="col-sm-2">
 					<div class="input-group">
 						<span class="input-group-addon">
-                            <input type="radio" name="tool" id="toolpen" value="pen"  checked></input><label for="toolpen">ペン</label>
+                            <input type="radio" name="tool" id="toolpen" value="pen"  checked></input><label for="toolpen">ペン（色選択後はペンタッチ）</label>
                             <a id="penclr" href="#" class="btn btn-default"></a>
 						    <input type="radio" name="tool" id="tooldel" value="del"></input><label for="tooldel">消しゴム</label>
+						</span>
+						<span class="input-group-botton">
+						    <button name="clean" id="clean" value="clean" class="btn btn-default"></input><label for="clean">クリーン</label>
 						</span>
 					</div>
 				</div>
 			</div>
 		</div>
-        <div id="sense_area_wrap" class="">
-            <canvas id="sense_area_log">
-            </canvas>
-            <canvas id="sense_area">
-            </canvas>
-        </div>
+		<div id="area_border">
+			<div id="sense_area_wrap" class="">
+				<canvas id="sense_area_log">
+				</canvas>
+				<canvas id="sense_area">
+				</canvas>
+			</div>
+		</div>
 	</div>
 </body>
 

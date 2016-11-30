@@ -182,13 +182,11 @@
 	    // // 上部の15px、下部の15px、コントローラの34px、さらにborderの上15px、下15pxを除く
 	    var wph = wh - 15 - 15 - 15 - 15- 34;
 	    wrap.height(wph);
+	    wrap.width(wrap.width());
 	
 	    var canv = $("#sense_area");
-	    canv.attr("width", wrap.width() - 30);
+	    canv.attr("width", wrap.width());
 	    canv.attr("height", wrap.height());
-	
-	    // バタバタするのを避けるために非表示にしてたのを復帰
-	    wrap.css("display", "block");
 	
 	    // jQueryオブジェクトではなくDOMを取得。
 	    var c = canv[0];
@@ -197,6 +195,9 @@
 	
 	    // 初期化
 	    clear();
+	
+	    // クリーンのハンドラ登録
+	    $("#clean").on("click", cleanAll);
 	
 	    // test_logdraw();
 	}
@@ -230,6 +231,11 @@
 	    // 現在の位置を保存
 	    preX = x;
 	    preY = y;
+	}
+	
+	function cleanAll() {
+	    var wrap = $("#sense_area_wrap");
+	    paperCtx.clearRect(0,0, wrap.width(), wrap.height());
 	}
 	
 	function clear() {
