@@ -3,8 +3,8 @@ module.exports = {
     './code/main.ts'
   ],
   output: {
-    path: './',
-    filename: 'app.js'
+    path: './build',
+    filename: 'freenote.js'
   },
   resolve: {
     extensions: ['', '.tsx', '.ts', '.js']
@@ -14,7 +14,7 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         loader: 'ts-loader',
-        exclude: /node_modules/
+        exclude: [/node_modules/, '/code/normaljs/']
       }
     ]
   },

@@ -12,20 +12,27 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		crossorigin="anonymous">
 	<link rel='stylesheet' id='style' href='style.css' type='text/css' media='all' />
+
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
+	<!--
+		将来のためにコメントアウトで保持
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/locale/ja.js" crossorigin="anonymous"></script>
+	-->
 
 	<link rel='stylesheet' id='' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.6/css/bootstrap-colorpicker.min.css'
 		type='text/css' media='all' />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.6/js/bootstrap-colorpicker.min.js" crossorigin="anonymous"></script>
 
+	<!-- メイン -->
+	<script type='text/javascript' src='build/freenote.js'></script>
+
 	<script type="text/javascript">
+	// typescript外なのでここで初期化
     $(function() {
-        moment.locale("ja");
         $("#penclr").colorpicker({
             color: "#FFFFFF",
             align: "left",
@@ -36,11 +43,33 @@
         });
     });
     </script>
-	<script type='text/javascript' src='app.js'></script>
 </head>
 
 <body>
-now development...
+	<div class="container-fluid">
+		<nav id="topnav">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="input-group">
+						<span class="input-group-addon">
+                            <input type="radio" name="tool" id="toolpen" value="pen"  checked></input><label for="toolpen">ペン（色選択後はペンタッチ）</label>
+                            <a id="penclr" href="#" class="btn btn-default"></a>
+						    <input type="radio" name="tool" id="tooldel" value="del"></input><label for="tooldel">消しゴム</label>
+						</span>
+						<span class="input-group-botton">
+						    <button name="clean" id="clean" value="clean" class="btn btn-default"></input><label for="clean">クリーン</label>
+						</span>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div id="border_freenote">
+			<div id="wrap_freenote" class="">
+				<canvas id="freenote">
+				</canvas>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

@@ -1,120 +1,102 @@
-class Paper {
-    private static cssid_canvas:string = "";
-    cunstructor() {
+import * as $ from 'jquery';
+//import { RGBColor } from "./mytypes/RGBColor.d";
+import { CN } from "./CN";
 
+export class Paper {
+    private preX: number;
+    private preY: number;
+
+    constructor() {
+        this.initWrapHeight_();
+        this.initWrapWidth_();
+        this.fitWrap();
     }
-}
+    private initWrapHeight_() {
+        // 画面の高さ - (topnavi + いろいろマージン）
 
-module.exports = {
-    draw: draw,
-    clear: clear,
-    initOnReady: initOnReady
-}
+        var wrap = $(CN.cssid_wrap_freenote);
+        var h_topnav = $(CN.cssid_topnav).height();
+        var h_window = $(window).height();
 
-var paperCtx;
-var preX;
-var preY;
-var RGBColor = require("rgbcolor");
+        // // 上部の15px、下部の15px、borderの上15px、下15pxを除く
+        var height = h_window - 15 - 15 - 15 - 15 - h_topnav;
+        wrap.height(height);
 
-function initOnReady() {
-    // サイズ調整
-    var wrap = $("#sense_area_wrap");
+        // 初期化
+        this.clearState();
 
-    // 高さの調節
-    var wh = $(window).height();
-    // // 上部の15px、下部の15px、コントローラの34px、さらにborderの上15px、下15pxを除く
-    var wph = wh - 15 - 15 - 15 - 15- 34;
-    wrap.height(wph);
-    wrap.width(wrap.width());
-
-    var canv = $("#sense_area");
-    canv.attr("width", wrap.width());
-    canv.attr("height", wrap.height());
-
-    // jQueryオブジェクトではなくDOMを取得。
-    var c = canv[0];
-    // DOMのgetContextを取得
-    paperCtx = c.getContext("2d");
-
-    // 初期化
-    clear();
-
-    // クリーンのハンドラ登録
-    $("#clean").on("click", cleanAll);
-
-    // test_logdraw();
-}
-
-function draw(x, y) {
-    var clr = getColor();
-    var tool = getTool();
-    drawProc(x, y, tool, clr);
-}
-
-function drawProc(x, y, tool, clr) {
-    paperCtx.beginPath();
-    if (preX == null) {
-        // 最初のポイント
-        paperCtx.moveTo(x, y);
-    } else {
-        // 次のポイントなので前回の位置を初期値に。
-        paperCtx.moveTo(preX, preY);
+        // クリーンのハンドラ登録
+        $(CN.cssid_bt_clean).on("click", () => {
+            let wrap = $(CN.cssid_wrap_freenote);
+            let paperCtx = this.getContext2D_();
+            paperCtx.clearRect(0, 0, wrap.width(), wrap.height());
+        });
+    }
+    private initWrapWidth_() {
+        // 横幅はCSSで自然と最大になるのでそのまま。
+        var wrap = $(CN.cssid_wrap_freenote);
+        wrap.width(wrap.width());
     }
 
-    if (tool == "pen") {
-        paperCtx.lineTo(x, y);
-        paperCtx.lineCap = "round";
-        paperCtx.lineWidth = 2;
-        paperCtx.strokeStyle = clr;
-        paperCtx.stroke();
-    } else if(tool == "del") {
-        paperCtx.clearRect(x - 20, y - 20, 40, 40);
+    public fitWrap() {
+        var canv = $(CN.cssid_freenote);
+        var wrap = $(CN.cssid_wrap_freenote);
+        canv.attr("width", wrap.width());
+        canv.attr("height", wrap.height());
     }
 
-    // 現在の位置を保存
-    preX = x;
-    preY = y;
-}
+    private getContext2D_() {
+        var canv = $(CN.cssid_freenote);
+        var dCanv = <HTMLCanvasElement>canv[0];
+        return dCanv.getContext("2d");
+    }
 
-function cleanAll() {
-    var wrap = $("#sense_area_wrap");
-    paperCtx.clearRect(0,0, wrap.width(), wrap.height());
-}
+    public clearState() {
+        this.preX = null;
+        this.preY = null;
+    }
 
-function clear() {
-    preX = null;
-    preY = null;
-}
-
-
-function getTool() {
-    return $("[name='tool']:checked").val();
-}
-
-function getColor() {
-    return new RGBColor($("#penclr").css("background-color")).toHex();
-}
+    public draw(x, y) {
+        var clr = this.getColor_();
+        var tool = this.getTool_();
+        this.drawProc_(x, y, tool, clr);
+    }
 
 
-function test_logdraw() {
-    // サイズ調整
-    var wrap = $("#sense_area_wrap");
-    var canv = $("#sense_area_log");
-    canv.attr("width", wrap.width() - 30);
-    canv.attr("height", wrap.height() - 30);
+    private drawProc_(x, y, tool, clr) {
+        var paperCtx = this.getContext2D_();
+        paperCtx.beginPath();
+        if (this.preX == null) {
+            // 最初のポイント
+            paperCtx.moveTo(x, y);
+        } else {
+            // 次のポイントなので前回の位置を初期値に。
+            paperCtx.moveTo(this.preX, this.preY);
+        }
 
-    // 退避
-    var tmp = paperCtx;
+        if (tool == "pen") {
+            paperCtx.lineTo(x, y);
+            paperCtx.lineCap = "round";
+            paperCtx.lineWidth = 2;
+            paperCtx.strokeStyle = clr;
+            paperCtx.stroke();
+        } else if (tool == "del") {
+            paperCtx.clearRect(x - 20, y - 20, 40, 40);
+        }
 
-    // 上書き用のキャンバス
-    paperCtx = canv[0].getContext("2d");
+        // 現在の位置を保存
+        this.preX = x;
+        this.preY = y;
+    }
 
-    draw(100, 100);
-    draw(200, 100);
-    draw(200, 200);
-    draw(100, 200);
-    draw(100, 100);
-    drawProc(200, 200, "del", "");
 
-    paperCtx = tmp;
+    private getTool_() {
+        return $("[name='tool']:checked").val();
+    }
+
+    private getColor_() {
+        //return new RGBColor($("#penclr").css("background-color")).toHex();
+        return "#FFFFFF";
+    }
+
 }

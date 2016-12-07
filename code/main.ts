@@ -1,2 +1,9 @@
-$("body").css("background-color", "skyeblue";)
-console.log("ok, changed background-color");
+import * as $ from 'jquery';
+import {Paper} from "./Paper";
+import {Sense} from "./Sense";
+
+$(function () {
+    let p = new Paper();
+    let s = new Sense(p);
+    s.setHandler();
+});
