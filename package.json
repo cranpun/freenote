@@ -1,19 +1,32 @@
 {
-  "name": "free_note",
+  "name": "cranpun-freenote",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "freehand draw tool",
+  "main": "index.html",
   "dependencies": {
-    "rgbcolor": "^1.0.0",
-    "webpack": "^1.13.3"
+    "jquery": "^2.2.4",
+    "moment": "^2.14.1",
+    "typescript": "^1.8.10",
+    "rgbcolor": "^1.0.0"
   },
   "devDependencies": {
+    "ts-loader": "^0.8.2",
     "webpack": "^1.13.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cranpun/freenote.git"
+  },
+  "keywords": [
+    "private"
+  ],
+  "author": "cranpun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cranpun/freenote/issues"
+  },
+  "homepage": "https://github.com/cranpun/freenote#readme"
 }

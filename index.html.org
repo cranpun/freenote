@@ -40,7 +40,32 @@
 </head>
 
 <body>
-now development...
+	<div class="container-fluid">
+		<div id="ctrl">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="input-group">
+						<span class="input-group-addon">
+                            <input type="radio" name="tool" id="toolpen" value="pen"  checked></input><label for="toolpen">ペン（色選択後はペンタッチ）</label>
+                            <a id="penclr" href="#" class="btn btn-default"></a>
+						    <input type="radio" name="tool" id="tooldel" value="del"></input><label for="tooldel">消しゴム</label>
+						</span>
+						<span class="input-group-botton">
+						    <button name="clean" id="clean" value="clean" class="btn btn-default"></input><label for="clean">クリーン</label>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="area_border">
+			<div id="sense_area_wrap" class="">
+				<canvas id="sense_area_log">
+				</canvas>
+				<canvas id="sense_area">
+				</canvas>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
