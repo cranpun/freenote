@@ -4,4 +4,5 @@ export class CN {
     static cssid_border_freenote: string = "#wrap_freenote";
     static cssid_topnav: string = "#topnav";
     static cssid_bt_clean: string = "#clean"; 
+    static cssid_bt_penclr: string = "#penclr";
 }

@@ -9888,7 +9888,7 @@
 
 	"use strict";
 	var $ = __webpack_require__(2);
-	//import { RGBColor } from "./mytypes/RGBColor.d";
+	//import * as RGBColor from "rgbcolor";
 	var CN_1 = __webpack_require__(4);
 	var Paper = (function () {
 	    function Paper() {
@@ -9968,8 +9968,15 @@
 	        return $("[name='tool']:checked").val();
 	    };
 	    Paper.prototype.getColor_ = function () {
-	        //return new RGBColor($("#penclr").css("background-color")).toHex();
-	        return "#FFFFFF";
+	        var clr = $(CN_1.CN.cssid_bt_penclr).css("background-color");
+	        var clrs = clr.replace("rgb(", "").replace(")", "").split(", ");
+	        var hex = "#";
+	        for (var i = 0; i < clrs.length; i++) {
+	            hex += parseInt(clrs[i]).toString(16);
+	        }
+	        return hex;
+	        //return new RGBColor($(CN.cssid_bt_penclr).css("background-color")).toHex();
+	        //return "#FFFFFF";
 	    };
 	    return Paper;
 	}());
@@ -9992,6 +9999,7 @@
 	CN.cssid_border_freenote = "#wrap_freenote";
 	CN.cssid_topnav = "#topnav";
 	CN.cssid_bt_clean = "#clean";
+	CN.cssid_bt_penclr = "#penclr";
 
 
 /***/ },
@@ -10001,7 +10009,6 @@
 	"use strict";
 	var CN_1 = __webpack_require__(4);
 	var Sense = (function () {
-	    // eventHandlerに
 	    function Sense(o_paper) {
 	        var _this = this;
 	        // event handlerのためアロー関数

@@ -1,5 +1,5 @@
 import * as $ from 'jquery';
-//import { RGBColor } from "./mytypes/RGBColor.d";
+//import * as RGBColor from "rgbcolor";
 import { CN } from "./CN";
 
 export class Paper {
@@ -95,8 +95,15 @@ export class Paper {
     }
 
     private getColor_() {
-        //return new RGBColor($("#penclr").css("background-color")).toHex();
-        return "#FFFFFF";
+        let clr = $(CN.cssid_bt_penclr).css("background-color");
+        let clrs = clr.replace("rgb(", "").replace(")", "").split(", ");
+        let hex = "#";
+        for(let i = 0; i < clrs.length; i++) {
+            hex += parseInt(clrs[i]).toString(16);
+        }
+        return hex;
+        //return new RGBColor($(CN.cssid_bt_penclr).css("background-color")).toHex();
+        //return "#FFFFFF";
     }
 
 }
