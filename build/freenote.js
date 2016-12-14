@@ -9993,13 +9993,13 @@
 	    }
 	    return CN;
 	}());
-	exports.CN = CN;
 	CN.cssid_freenote = "#freenote";
 	CN.cssid_wrap_freenote = "#wrap_freenote";
 	CN.cssid_border_freenote = "#wrap_freenote";
 	CN.cssid_topnav = "#topnav";
 	CN.cssid_bt_clean = "#clean";
 	CN.cssid_bt_penclr = "#penclr";
+	exports.CN = CN;
 
 
 /***/ },

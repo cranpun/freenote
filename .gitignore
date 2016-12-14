@@ -1,4 +1,4 @@
-app.js.map
+*.js.map
 npm-debug.log
 node_modules/
 .DAV
