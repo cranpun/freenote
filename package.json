@@ -6,7 +6,7 @@
   "dependencies": {
     "@types/jquery": "^2.0.34",
     "@types/touch-events": "0.0.27",
-    "jquery": "^2.2.4",
+    "jquery": "^3.3.1",
     "rgbcolor": "^1.0.0",
     "typescript": "^2.0.10"
   },
