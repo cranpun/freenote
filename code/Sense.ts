@@ -28,6 +28,11 @@ export class Sense {
         this.setHandlerTouch_(freenote, "touchleave");
         this.setHandlerTouch_(freenote, "touchmove");
         this.setHandlerTouch_(freenote, "touchend");
+
+        this.setHandlerPointer_(freenote, "pointerup");
+        this.setHandlerPointer_(freenote, "pointerdown");
+        this.setHandlerPointer_(freenote, "pointermove");
+        this.setHandlerPointer_(freenote, "pointerleave");
     }
 
     // event handlerのためアロー関数
@@ -88,8 +93,33 @@ export class Sense {
         });
     }
 
+    // event handlerのためアロー関数
+    private setHandlerPointer_ = (freenote: JQuery, elabel: string): void => {
+        freenote.on(elabel, (e: JQueryEventObject) => {
+            e.preventDefault();
+            this.nowdevice = "pointer";
+            let xy = this.getXY_(this.nowdevice, e);
 
-    private getXY_(dev: string, e: JQueryEventObject) {
+            if (elabel == "pointerup") {
+                this.nowpos = "up";
+            } else if (elabel == "pointerdown") {
+                this.nowpos = "down";
+            } else if (elabel == "pointerleave") {
+                // 領域の外に出たら終了
+                this.nowpos = "up"
+            }
+
+            // 現在の位置に従って描画
+            if (this.nowpos == "down") {
+                this.paper.draw(xy.x, xy.y);
+            } else {
+                this.paper.clearState();
+            }
+
+        });
+    }
+
+    private getXY_(dev: string, e: JQueryEventObject|any) {
         if (dev == "touch") {
             let te = <TouchEvent>e.originalEvent;
             let oe = te.changedTouches[0];

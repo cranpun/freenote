@@ -1,19 +1,22 @@
+const path = require("path");
+
 module.exports = {
+  mode: "development",
   entry: [
     './code/main.ts'
   ],
   output: {
-    path: './build',
+    path: path.resolve(__dirname, './build'),
     filename: 'freenote.js'
   },
   resolve: {
-    extensions: ['', '.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js']
   },
   module: {
-    loaders: [
+    rules: [
       {
+        use: "ts-loader",
         test: /\.ts(x?)$/,
-        loader: 'ts-loader',
         exclude: [/node_modules/, '/code/normaljs/']
       }
     ]
